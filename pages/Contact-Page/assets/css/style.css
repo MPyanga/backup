@@ -1,0 +1,303 @@
+body{
+    margin: 0;
+}
+
+header {
+    display:flex;
+    width: 100%;
+    height: 10vh;
+    position: fixed;
+    background-color:lightcoral;
+    /* box-shadow: 1px 1px 15px rgb(255, 208, 1); */
+    border-bottom: 2px solid lightcoral;
+    z-index: 1;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+
+    & > a {
+        text-decoration: none;
+
+
+        & > h2 {
+            color: white;
+            letter-spacing: 2px;
+            font-size: 40px;
+            margin-left: 2rem;
+            font-family: "Bungee", sans-serif;
+            font-weight: 900;
+        }
+    }
+
+    & > nav {
+        display: flex;
+        gap: 2rem;
+        margin-right: 4rem;  
+        
+        & > .btn{
+            display: flex;
+            background-color: rgb(198, 41, 41);
+            color: white;
+            border-radius: 10px;
+            width: 7rem;
+            height: 2.2rem;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            gap: 10px;
+            font-size: 12px;
+
+            &:hover{
+                background-color: rgb(129, 84, 84);
+            }
+        }
+        & > .dropdown-menu{
+            background-color: lightblue;
+
+            & > li > a{
+                font-size: 12px;
+            }
+        }
+            & > a {
+                text-decoration: none;
+                
+                & > button {
+                    display: flex;
+                    color: white;
+                    height: 2rem;
+                    width: 6rem;
+                    gap: 10px;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                    background-color: transparent;
+                }
+            }
+
+    }  
+    & > .hamburger {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+        display: none;
+    }
+}
+
+header.scrolled{
+    background-color: lightblue;
+    box-shadow: none;
+}
+
+::-webkit-scrollbar {
+    width: 1.1rem; /* Width of the scrollbar */
+    scroll-behavior: smooth;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: lightcoral;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: lightblue;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: lightpink;
+}
+
+.section1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: lightcoral;
+    color: white;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+
+    & > h1{
+        font-size: 50px;
+        font-family: "Bungee", sans-serif;
+        font-weight: 900;
+    }
+    
+    & > .about-us{
+        display: flex;
+        height: 50vh;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+
+        & > .container-left{
+            display: flex;
+            width: 50%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        & > .container-right{
+            display: flex;
+            width: 30%;
+            justify-content: center;
+            align-items: center;
+
+            & > img{
+                display: flex;
+                height: 60vh;
+            }
+        }
+    }
+}
+.section2{
+    display: flex;
+    width: 100%;
+    height: 50vh;
+    color: white;
+    background-color: lightblue;
+    justify-content: center;
+    align-items: center;
+
+    & > .mission-vision{
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+        justify-content: center;
+      
+        & > .container-left{
+            display: flex;
+            width: 40%;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+
+            & > h1{
+                font-size: 50px;
+                font-family: "Bungee", sans-serif;
+                font-weight: 900;
+            }
+        }
+
+        & > .container-right{
+            display: flex;
+            width: 40%;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+
+            & > h1{
+                font-size: 50px;
+                font-family: "Bungee", sans-serif;
+                font-weight: 900;
+            }
+        }
+    }
+}
+
+.section3{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: lightcoral;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6rem;
+    
+    & > h1{
+        font-size: 50px;
+        font-family: "Bungee", sans-serif;
+        font-weight: 900;
+    }
+
+    & > .our-team{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 5rem;
+
+        & > .container-holder:nth-child(2)> .top > img{
+            height: 20rem;
+            transform: translateY(-6.7rem);
+        }
+        & > .container-holder:nth-child(3)> .top > img{
+            height: 16.5rem;
+            transform: translateY(-3.2rem);
+        }
+        
+        & > .container-holder{
+            display: flex;
+            background-color: transparent;
+            height: 60vh;
+            width: 18rem;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            & > .top{
+                display: flex;
+                height: 50%;
+                width: 20rem;
+                justify-content: center;
+                background-image: url(../img/vecteezy_organic-blob-shapes-hand-drawn-illustration_9669030.png);
+                background-position: center;
+                background-size: cover;
+                
+                & > img{
+                    display: flex;
+                    height: 16.6rem;
+                    transform: translateY(-3.3rem);
+                }
+            }
+
+            & > .bottom{
+                display: flex;
+                height: 40%;
+                color: white;
+                flex-direction: column;
+                text-align: center;
+                border-top: 2px solid white;
+                padding-top: 1rem;
+
+                & > p:nth-child(2){
+                    font-weight: 500;
+                    font-size: 17px;
+                    margin-top: 10px;
+                }  
+                & > p{
+                    font-size: 14px;
+                }   
+
+                & > .link-holder{
+                    display: flex;
+                    justify-content: center;
+                    gap: 1rem;
+
+                    & > a{
+                        color: black;
+                        font-size: 22px;
+                        text-decoration: none;
+
+                        &:hover{
+                            transform: scale(1.2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer{
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+}
