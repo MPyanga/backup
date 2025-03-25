@@ -1,5 +1,5 @@
 
-            // Get necessary elements
+          // Get necessary elements
             const hamburgerButton = document.getElementById("hamburger_icon");
             const navLinks = document.getElementById("navlinks");
             const icon = hamburgerButton.querySelector("i"); // Use optional chaining to prevent errors
@@ -104,7 +104,7 @@ links.forEach(({ elementId }) => {
 });
 
             
-            const API_URL = "https://demo-api-skills.vercel.app/api/EventOrganizer/users";
+            const API_URL = "https://demo-api-skills.vercel.app/api/SocialButterfly/users";
             const group = "admin";
             // Handle login form submission
             document.getElementById("loginform").addEventListener("submit", function (event) {
@@ -133,7 +133,7 @@ links.forEach(({ elementId }) => {
             
             
                         setTimeout(() => {
-                            window.location.href = document.getElementById("default").href;
+                            window.location.href = document.getElementById("admin").href;
                         }, 2000);
                 
                         return;
@@ -141,6 +141,7 @@ links.forEach(({ elementId }) => {
                     if(username == "admin" && password == '123'){
                         loader.style.display ="flex";
                         modal.style.display = "none";
+                        localStorage.setItem("isLoggedIn", "true");
                         setTimeout(() => {
                             window.location.href = document.getElementById("admin").href;
                         }, 2000);
@@ -227,4 +228,42 @@ links.forEach(({ elementId }) => {
                         console.error("Error fetching users:", error);
                     });
             });
+            
+
+            function checkAccountStatus() {
+                const loggedInUserId = localStorage.getItem("userId"); // Get current user ID
+            
+                if (!loggedInUserId) return; // If not logged in, exit function
+            
+                axios.get(`${API_URL}/${loggedInUserId}`)
+                    .then(response => {
+                        console.log("User still exists:", response.data);
+                    })
+                    .catch(error => {
+                        console.error("User not found! Logging out...", error);
+                        
+                        Swal.fire({
+                            title: "Session Expired",
+                            text: "Your account has been deleted by an admin.",
+                            icon: "warning",
+                            timer: 3000,
+                            showConfirmButton: false
+                        });
+            
+                        // Clear session data
+                        localStorage.removeItem("loggedInUserId");
+                        sessionStorage.clear();
+            
+                        // Redirect to login page
+                        setTimeout(() => {
+                            window.location.href = document.getElementById("default").href; // Change this to your login page
+                            localStorage.setItem("isLoggedIn", "false");
+                            localStorage.setItem("userId", "");
+
+                        }, 3000);
+                    });
+            }
+            
+            // Check every 10 seconds if the account still exists
+            setInterval(checkAccountStatus, 10000);
             
