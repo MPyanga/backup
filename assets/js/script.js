@@ -13,7 +13,8 @@
             const createModal = document.getElementById("createModal");
             const loginAccount = document.getElementById("loginAccount");
             const createAccountBtn = document.getElementById("Create");
-            
+            const closeeventmodal = document.getElementById("closeeventmodal");
+
             // Navbar toggle
             hamburgerButton.addEventListener("click", () => {
                 navLinks.classList.toggle("show");
@@ -34,7 +35,7 @@
                 setTimeout(() => {
                     localStorage.setItem("isLoggedIn", "false");
                     localStorage.removeItem("userId");
-                    window.location.reload();
+                    window.location.href = document.getElementById("default").href;
                 }, 2000);
             
             });
@@ -51,14 +52,19 @@
 
                 });
             }
-            
-            // Modal close event
-            closeModalBtn.addEventListener("click", () => {
+            function closeModal() {
                 modal.style.display = "none";
+                eventmodal.style.display = "none"
                 document.getElementById("createModal").style.display = "none";
                 document.getElementById("loginAccount").style.display = "flex";
-
-            });
+            }
+            function eventcloseModal() {
+                eventmodal.style.display = "none"
+            }
+            
+            if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+            if (closeeventmodal) closeeventmodal.addEventListener("click", eventcloseModal);
+            
 
             
             // Close modal when clicking outside
@@ -67,12 +73,7 @@
                     modal.style.display = "none";
                 }
             });
-            
-            // Ensure user storage exists
-            if (!localStorage.getItem("users")) {
-                localStorage.setItem("users", JSON.stringify({ admin: "123" }));
-            }
-            
+       
             // Handle link redirection
             // Function to handle the link click event
 function handleLinkClick(event) {
@@ -93,6 +94,11 @@ const links = [
     { elementId: "event" },
     { elementId: "createEvent" },
     { elementId: "gathering" },
+    { elementId: "joinevent" },
+    { elementId: "ourstory" },
+    { elementId: "sharereview" },
+
+
 ];
 
 links.forEach(({ elementId }) => {
@@ -103,7 +109,6 @@ links.forEach(({ elementId }) => {
     }
 });
 
-            
             const API_URL = "https://demo-api-skills.vercel.app/api/SocialButterfly/users";
             const group = "admin";
             // Handle login form submission
@@ -267,3 +272,12 @@ links.forEach(({ elementId }) => {
             // Check every 10 seconds if the account still exists
             setInterval(checkAccountStatus, 10000);
             
+            document.getElementById("back").addEventListener("click", () => {
+                createModal.style.display = "none";
+                loginAccount.style.display = "flex";
+            });
+
+            document.getElementById("createEvent").addEventListener("click", () => {
+                document.getElementById("eventmodal").style.display = "flex";
+            });
+

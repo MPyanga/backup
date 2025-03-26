@@ -42,6 +42,33 @@
     </nav>
     <button class="hamburger" id="hamburger_icon"><i class="fa-solid fa-bars"></i></button>
 </header>
+<div class="eventmodal" id="eventmodal">
+    <div class="modal-content">
+        <span class="close" id="closeeventmodal">&times;</span>
+          <div class="create-modal" id="createevent">
+             <form id="editform">
+                <div class="input-holder">
+                    <i class="fa-solid fa-id-card"></i>
+                  <input id="createeventid" type="text" placeholder="Id" disabled>
+                  </div>
+              <div class="input-holder">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" id="createventname" placeholder="Username">
+              </div>
+              <div class="input-holder">
+                <i class="fa-solid fa-envelope"></i>
+              <input id="createeventemail" type="email" placeholder="Email" disabled>
+              </div>
+              <div class="input-holder">
+                <i class="fa-solid fa-key"></i>
+              <input id="createeventpassword" type="password" placeholder="Password" disabled>
+              </div>
+              <button type="submit"><i class="fa-solid fa-check"></i>Save Changes</button>
+              </form> 
+              <button><i class="fa-solid fa-user-xmark"></i>Delete Account</button>
+          </div> 
+    </div>
+</div>
 <div class="modal" id="loginModal">
     <div class="modal-content">
         <span class="close" id="closeModalBtn">&times;</span>
@@ -66,7 +93,7 @@
                 <a id="default" href="./index.html"></a>
               </form> 
               <div class="createAccount-holder">
-                <a href="">Forgot Password?</a>      
+                <a href="" id="forgotPassword">Forgot Password?</a>      
                 <button id="Create">Sign Up</button>
               </div>
           </div>
@@ -92,6 +119,7 @@
               <button type="submit">CREATE ACCOUNT</button>
               <p class="error-msg" id="errorMessage">Invalid username or password.</p>
             </form> 
+            <button id="back" class="back"><i class="fa-solid fa-arrow-left"></i>Return</button>
           </div>
         </div>
       </div>
@@ -166,7 +194,7 @@
                 <div class="top"><img src="./assets/img/boston-marathon-900x600.jpg" alt=""></div>
                 <div class="bottom"><h1>SPORTS EVENTS</h1></div>
             </div></div>
-        <a href=""><button>JOIN THE FUN!</button></a>
+        <a href="./pages/Event-Page/index.html"><button id="joinevent">JOIN THE FUN!</button></a>
     </div>
 </section>
 <section class="section4">
@@ -182,7 +210,6 @@
                 <p>Discover local concerts, plan gatherings, and connect with like-minded individuals</p>
             </div>
             <div class="container">
-
                 <i class="fa-solid fa-heart-pulse"></i>
                 <p>Every event, a new experience. Every moment, unforgettable</p>
             </div>
@@ -191,8 +218,8 @@
             <img src="./assets/img/about-us-1.svg" alt="">
         </div>
     </div>
-    <a href="">
-        <button>OUR STORY</button>
+    <a href="./pages/About-Page/index.html">
+        <button id="ourstory">OUR STORY</button>
     </a>
 </section>
 <section class="section5">
@@ -234,7 +261,7 @@
             <p>Fantastic platform for event discovery! The interface is intuitive, and the search filters make finding the perfect event a breeze. Booking was quick and hassle-free!</p> 
         </div>
     </div>
-    <a href=""><button>READ & SHARE REVIEWS </button></a>
+    <a href=""><button id="sharereview">READ & SHARE REVIEWS </button></a>
 </section>
 <footer>
     <b>Copyright ©2025: HANGIFY</b>

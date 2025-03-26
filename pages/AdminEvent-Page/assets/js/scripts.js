@@ -2,7 +2,11 @@ const eventsContainer = document.getElementById("eventsContainer");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementById("closeModalBtn");
 const createEventBtn = document.getElementById("create");
-const API_URL = "https://demo-api-skills.vercel.app/api/SocialButterfly/events";
+const createmodal = document.getElementById("createmodal");
+const editmodal = document.getElementById("editmodal");
+const fetchBtn = document.getElementById("fetch");
+
+const API_URL = "https://demo-api-skills.vercel.app/api/SocialButterfly/events/693dc21d-23d4-413f-ae07-257c53a35874";
 
 let eventsData = [];
 
@@ -18,6 +22,8 @@ function fetchAllEvents() {
             Swal.fire({ title: "Error", text: "Failed to fetch events.", icon: "error" });
         });
 }
+
+
 
 // Display Events
 function displayEvents(events) {
@@ -65,6 +71,7 @@ document.getElementById("createform").addEventListener("submit", function (event
             Swal.fire({ title: "Event Created!", text: "Event added successfully.", icon: "success", timer: 2000, showConfirmButton: false });
             // fetchAllEvents();
             modal.style.display = "none";
+            
             console.log("Response:", response);
 
         })
@@ -162,9 +169,15 @@ window.addEventListener("load", fetchAllEvents);
 
 createEventBtn.addEventListener("click", () => {
     modal.style.display = "flex";
-    // document.getElementById("createmodal").style.display = "flex";
-    // document.getElementById("editmodal").style.display = "none";
+    createmodal.style.display = "flex";
+    editmodal.style.display = "none";
 
+
+    // Ensure form uses `createUser` when submitting
+});
+
+fetchBtn.addEventListener("click", () => {
+    fetchAllEvents()
 
     // Ensure form uses `createUser` when submitting
 });

@@ -179,7 +179,7 @@ header {
     flex-direction: column;
     height: 100%;
     width: 100%;
-    padding-top: 15vh;
+    padding-top: 10vh;
 
     & > nav{
         width: 100%;
@@ -192,7 +192,7 @@ header {
         justify-content: center;
         padding-right: 2rem;
         position: fixed;
-        background-color: transparent;
+        background-color: rgb(252, 252, 205);
 
         & > .create{
           display: flex;
@@ -410,6 +410,7 @@ header {
             height: 100%;
             align-items: center;
             justify-content: center;
+            
             & > b{
               font-family: "Bungee", sans-serif;
               font-size: 20px;
@@ -609,12 +610,11 @@ header {
 }
 }
 
-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 0;
-    height: 12vh;
-    width: 100%;
-    background-color: black;
-  }
+  .swal2-popup {
+    background-color: blueviolet !important; /* Dark mode background */
+    color: white !important; /* White text */
+    border-radius: 10px !important; /* Rounded corners */
+}
+.swal2-success-ring {
+  border-color: white !important; /* Outer ring color */
+}

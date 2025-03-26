@@ -1,47 +1,37 @@
-function validateEvent() {
-    const eventId = document.getElementById("idinput").value;
-    const adminId = "your-admin-id-uuid"; // Replace with the actual admin ID
+document.getElementById("validate").addEventListener("click", () => {
+    document.getElementById("validateform").style.display = "block";
+});
 
-    // Check if the event ID is provided
+document.getElementById("validateform").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const eventId = document.getElementById("validateinput").value;
+    const adminId = "your-admin-uuid"; // Replace with the actual admin UUID
+
     if (!eventId) {
         alert("Please enter an event ID.");
         return;
     }
 
-    // Create the request URL with the event ID
-    const url = `https://demo-api-skills.vercel.app//api/SocialButterfly/admin/events/${eventId}/validate`;
+    try {
+        const response = await fetch(`https://demo-api-skills.vercel.app/api/SocialButterfly/admin/events/${eventId}/validate/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "adminId": adminId
+            }
+        });
 
-    // Prepare headers including the adminId
-    const headers = {
-        "adminId": adminId,
-        "Content-Type": "application/json"
-    };
-
-    // Use fetch to send the POST request
-    fetch(url, {
-        method: "POST",
-        headers: headers
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("Failed to validate event.");
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
         }
-    })
-    .then(data => {
-        // Handle successful validation
-        if (data.event.validated) {
-            alert(`Event with ID ${data.event.id} has been validated successfully.`);
-        } else {
-            alert("Event validation failed.");
-        }
-    })
-    .catch(error => {
-        // Handle errors
-        alert(`Error: ${error.message}`);
-    });
-}
 
-// Event listener for the validate button
-document.getElementById("validate").addEventListener("click", validateEvent);
+        const data = await response.json();
+        alert(`Event ID ${data.event.id} validated successfully!`);
+    } catch (error) {
+        console.error("Validation failed:", error);
+        alert("Failed to validate event. Check console for details.");
+    }
+});
+
+// Hide form initially
+document.getElementById("validateform").style.display = "none";

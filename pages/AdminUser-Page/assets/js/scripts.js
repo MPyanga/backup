@@ -6,10 +6,10 @@ const closeModalBtn = document.getElementById("closeModalBtn");
 const usersContainer = document.getElementById("usersContainer");
 const createAccountBtn = document.getElementById("Create");
 const initial = document.getElementById("initial");
-
+const signOutButton = document.getElementById("signout")
 let usersData = []; // Store fetched users globally
 
-const API_URL = "https://demo-api-skills.vercel.app/api/EventOrganizer/users";
+const API_URL = "https://demo-api-skills.vercel.app/api/SocialButterfly/users";
 window.addEventListener("load", fetchAllUsers);
 // Toggle Navbar
 hamburgerButton.addEventListener('click', () => {
@@ -22,32 +22,22 @@ hamburgerButton.addEventListener('click', () => {
 });
 
 // Sign Out Function
-document.getElementById("signout").addEventListener("click", function () {
+signOutButton.addEventListener("click", function () {
     Swal.fire({
-        title: "Are you sure?",
-        text: "You will be logged out.",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, Sign Out",
-        cancelButtonText: "Cancel"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                title: "Logged Out!",
-                text: "You have successfully signed out.",
-                icon: "success",
-                timer: 2000,
-                showConfirmButton: false
-            });
-            setTimeout(() => {
-                window.location.href = "../../../../index.html"; // Redirect to login
-            }, 2000);
-        }
+        title: "Logged Out!",
+        text: "You have successfully signed out.",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
     });
-});
 
+    setTimeout(() => {
+        localStorage.setItem("isLoggedIn", "false");
+        localStorage.removeItem("userId");
+        window.location.href = document.getElementById("default").href;
+    }, 2000);
+
+});
 // Fetch Users from API
 function fetchAllUsers() {
     axios.get(API_URL)
@@ -76,7 +66,7 @@ function displayUsers(users) {
         users.forEach(user => {
             const userContainer = document.createElement('div');
             userContainer.classList.add('user-container');
-            userContainer.dataset.userId = user.id; // Store user ID
+            userContainer.dataset.userEmail = user.email; // Store user ID
 
             userContainer.innerHTML = `
                 <div class="container">
@@ -93,10 +83,6 @@ function displayUsers(users) {
                         <div>
                             <div class="left"><i class="fa-solid fa-envelope"></i></div>
                             <div class="right"><p>${user.email || "N/A"}</p></div>
-                        </div>
-                        <div>
-                            <div class="left"><i class="fa-solid fa-key"></i></div>
-                            <div class="right"><p>${user.password || "N/A"}</p></div>
                         </div>
                     </div>
                 </div>
@@ -127,8 +113,8 @@ document.getElementById("searchForm").addEventListener("submit", function (event
         user.name.toLowerCase().includes(searchInput) ||
         user.email.toLowerCase().includes(searchInput)
     );
-
     displayUsers(filteredUsers);
+
 });
 
 // Handle Click Event for User Details
@@ -136,9 +122,9 @@ usersContainer.addEventListener("click", function (event) {
     let userContainer = event.target.closest(".user-container");
 
     if (userContainer) {
-        let userId = userContainer.dataset.userId;
+        let userEmail= userContainer.dataset.userEmail;
 
-        axios.get(`${API_URL}/${userId}`)
+        axios.get(`${API_URL}/login/${userEmail}`)
             .then(response => {
                 let user = response.data;
 
@@ -151,7 +137,8 @@ usersContainer.addEventListener("click", function (event) {
                 modal.style.display = "flex";
                 document.getElementById("createmodal").style.display = "none";
                  document.getElementById("editmodal").style.display = "flex"; // Show modal
-            })
+                fetchAllUsers();
+                })
             .catch(error => {
                 console.error("Error fetching user details:", error);
             });
@@ -227,7 +214,6 @@ document.getElementById('delete').addEventListener("click", function () {
                     modal.style.display = "none"
                     // Redirect to login or homepage
                     setTimeout(() => {
-                        window.location.href = document.getElementById("default").href;
                     }, 2000);
                 })
                 .catch(error => {
@@ -306,6 +292,7 @@ document.getElementById("createform").addEventListener("submit", function (event
                     });
 
                     modal.style.display = "none";
+                    fetchAllUsers();
 
                 })
                 .catch(error => {
