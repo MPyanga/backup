@@ -611,23 +611,21 @@ header {
 
             & > .container-holder{
                 display: flex;
-                height: 50vh;
-                width: 20rem;
+                height: 40vh;
+                width: 100%;
                 background-color: white;
-                flex-direction: column;
+                flex-direction: row;
 
                 & > .top{
                     display: flex;
-                    width: 100%;
-                    height: 40%;
+                    width: 40%;
                     background-color: gray;
                 }
                 & > .bottom{
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    height: 60%;
-                    width: 100%;
+                    width: 60%;
                     background-color: brown;
                 }
             }
@@ -1452,9 +1450,17 @@ header {
     }
 }
 
-
+footer{
+    display: flex;
+    height: 12vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(251, 149, 165);
+    border-top: 3px solid black;
+  }
 /* Responsive for smaller screens */
-@media only screen and (max-width: 376px){
+@media only screen and (min-width: 375px) and (max-width: 440px){
     header{
         width: 100%;
         height: 40px;
@@ -1749,7 +1755,7 @@ header {
 
         & > .container-holder{
             flex-direction: column;
-            height: 100vh;
+            height: 90vh;
             width: 100%;
             gap: 8rem;
 
@@ -1798,7 +1804,7 @@ header {
     }
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1440px) {
+@media only screen and (min-width: 1024px) and (max-width: 1240px){
     header{
 
         & > a > h2 {
@@ -1835,6 +1841,7 @@ header {
         }
 
         & > .right-container {
+            width: 50%;
             & > h1{
 
                 & > span:nth-child(1){
@@ -1854,10 +1861,11 @@ header {
 
     .section2{
         height: 90vh;
-
+        
         & > .container-holder{
 
             & > .left{
+                width: 35%;
                 & > h1{
                     font-size: 2rem;
                 }
@@ -1866,7 +1874,7 @@ header {
             & > .right{
 
                 & > img:nth-child(1){
-                    height: 80%;
+                    height: 60%!important;
                 }
 
                 & > img:nth-child(2){
@@ -1877,24 +1885,29 @@ header {
     }
 
     .section3{
-        height: 100vh;
+        height: 130vh!important;
         gap: 2rem;
-
         & > h1{
             width: 80%;
             font-size: 2rem;
         }
 
-        & > .card-holder{  
+        & > .card-holder{
+            width: 100%;
+            flex-direction: row;
+            gap: 20px;
+
             & > .top-holder , & > .bottom-holder{
-
+                flex-direction: column;
+                width: 40%;
+                height: 100%;
+                gap: 2rem;
                 & > .card-container{
-                    width: 20rem;
-
+                    width: 20rem!important;
+                    height: 24vh!important;
                     & > .top > img{
                         filter: saturate(0.9);
                     }
-
                     & > .bottom{
                         display: flex;
                         transform: translateY(-20vh);
@@ -1907,9 +1920,11 @@ header {
                     }
                 }
             }
+            & > a{
+                transform: translateY(50vh);
+            }
         }
     }
-
     .section4{
         height: 140vh;
         gap: 20px;
@@ -1937,7 +1952,7 @@ header {
     }
 
     .section5{
-        height: 90vh;
+        height: 150vh;
         gap:1rem;
 
         & > h1{
@@ -1946,9 +1961,10 @@ header {
         }
 
         & > .container-holder{
-            height: 60%;
-            width: 90%;
-            gap: 4rem;
+            height: 100%;
+            width: 25%;
+            gap: 10rem;
+            flex-direction: column;
 
             & > .container{
                 gap: 0;
@@ -1971,7 +1987,7 @@ header {
                 }
 
                 & > img{
-                    height: 59vh;
+                    height: 54vh;
                 }
             }
         }
