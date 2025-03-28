@@ -1,14 +1,14 @@
-const API_URL = "https://demo-api-skills.vercel.app/api/EventOrganizer/users";
+const API_URL = "https://demo-api-skills.vercel.app/api/SocialButterfly/users";
 const group = "admin";
 let currentUser = {}; // Store user data globally
 
 // Listen for when the DOM content is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-    const userId = localStorage.getItem("userId");
+    const userEmail = localStorage.getItem("userEmail");
 
-    if (userId) {
+    if (userEmail) {
         // Fetch user data based on the user ID
-        axios.get(`${API_URL}/${userId}`)
+        axios.get(`${API_URL}/login/${userEmail}`)
             .then(response => {
                 currentUser = response.data; // Store user data globally
                 document.getElementById("name").value = currentUser.name || "";
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // Perform the PUT request when the submit button is clicked
-            axios.put(`${API_URL}/${userId}`, updatedUser)
+            axios.put(`${API_URL}/${currentUser.id}`, updatedUser)
                 .then(response => {
                     console.log("User updated successfully:", response.data);
                     Swal.fire({
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`${API_URL}/${userId}`)
+                axios.delete(`${API_URL}/${currentUser.id}`)
                     .then(response => {
                         console.log("User deleted successfully:", response.data);
                         Swal.fire({
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         });
     
                         // Clear user data from local storage
-                        localStorage.removeItem("userId");
+                        localStorage.removeItem("userEmail");
                         localStorage.setItem("isLoggedIn", "false");
                         
                         // Redirect to login or homepage
@@ -118,7 +118,32 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+const discard = document.getElementById("discard");
 
+if (discard) {
+    discard.addEventListener("click", () => {
+        // Restore original values
+        if (currentUser) {
+            document.getElementById("name").value = currentUser.name || "";
+            document.getElementById("email").value = currentUser.email || "";
+            document.getElementById("password").value = currentUser.password || "";
+        }
+
+        // Show confirmation message
+        Swal.fire({
+            title: "Changes Discarded",
+            text: "Your edits have been reverted.",
+            icon: "info",
+            timer: 2000,
+            showConfirmButton: false
+        }).then(() => {
+            // Navigate after user sees the message
+            window.location.href = document.getElementById("default").href;
+        });
+    });
+} else {
+    console.error("Discard button not found.");
+}
 
 
 const togglePassword = document.getElementById("unhide");

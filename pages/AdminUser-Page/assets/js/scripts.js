@@ -132,7 +132,6 @@ usersContainer.addEventListener("click", function (event) {
                 document.getElementById("id").value = user.id || "N/A";
                 document.getElementById("name").value = user.name || "N/A";
                 document.getElementById("email").value = user.email || "N/A";
-                document.getElementById("password").value = user.password || "N/A";
 
                 modal.style.display = "flex";
                 document.getElementById("createmodal").style.display = "none";
@@ -151,13 +150,11 @@ document.getElementById("editform").addEventListener("submit", function (event) 
 
     const userId = document.getElementById("id").value;
     const nameInput = document.getElementById("name").value;
-    const passwordInput = document.getElementById("password").value;
     const emailInput = document.getElementById("email").value;
 
     const updatedUser = {
         email: emailInput,
         name: nameInput,
-        password: passwordInput
     };
 
     axios.put(`${API_URL}/${userId}`, updatedUser)

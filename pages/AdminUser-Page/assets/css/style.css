@@ -194,7 +194,7 @@ header {
         position: fixed;
         background-color: rgb(252, 252, 205);
 
-        & > .create{
+        & > .create-btn{
           display: flex;
           width: 8rem;
           height: 2.5rem;
@@ -208,7 +208,7 @@ header {
           border-radius: 20px;
         }
 
-        & > .fetch{
+        & > .fetch-btn{
           display: flex;
           width: 8rem;
           height: 2.5rem;
@@ -303,7 +303,7 @@ header {
         align-items: center;
         padding: 4rem;
         margin-top: 10vh;
-
+      
         & .container{
             display: flex;
             flex-direction: column;
@@ -410,14 +410,7 @@ header {
             height: 100%;
             align-items: center;
             justify-content: center;
-            
-            & > b{
-              font-family: "Bungee", sans-serif;
-              font-size: 20px;
-              color: rgb(23, 23, 21);
-              margin-bottom: 2rem;
-            }
-      
+          
             & > form {
               display: flex;
               flex-direction: column;
@@ -425,7 +418,13 @@ header {
               align-items: center;
               width: 100%;
               gap: 1rem;
-      
+        
+              & > b{
+                font-family: "Bungee", sans-serif;
+                font-size: 20px;
+                color: rgb(23, 23, 21);
+              }
+        
               & > .input-holder {
                 display: flex;
                 line-height: 30px;

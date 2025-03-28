@@ -73,7 +73,15 @@
                       </div>
                       <div class="input-holder">
                         <i class="fa-solid fa-key"></i>
-                      <input id="eventCategory" type="text" placeholder="category">
+                        <input type="text" id="category">
+                      <select id="eventCategorySelect" class="select">
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Volvo">Volvo</option>
+                        <option value="Saab">Saab</option>
+                        <option value="Fiat">Fiat</option>
+                        <option value="Audi">Audi</option>
+                        <option value="other">other</option>
+                    </select>
                       </div>
                       <div class="input-holder">
                         <i class="fa-solid fa-key"></i>
@@ -106,7 +114,8 @@
             </div>
         </div>
     </section>
-<script src="./assets/js/validate.js"></script>
+    <a href="../../index.html" id="default"></a>
+<script src="./assets/js/scripts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

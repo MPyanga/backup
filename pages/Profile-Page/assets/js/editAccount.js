@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
         function updateUser() {
             const updatedUser = {
                 name: nameInput.value,
-                password: passwordInput.value,
             };
 
             // Perform the PUT request when the submit button is clicked

@@ -45,27 +45,45 @@
 <div class="eventmodal" id="eventmodal">
     <div class="modal-content">
         <span class="close" id="closeeventmodal">&times;</span>
-          <div class="create-modal" id="createevent">
-             <form id="editform">
+          <div class="createEvent-modal" id="createevent">
+            <nav><button>page1</button><button>page2</button></nav>
+             <form id="createEventform">
                 <div class="input-holder">
                     <i class="fa-solid fa-id-card"></i>
-                  <input id="createeventid" type="text" placeholder="Id" disabled>
+                  <input id="eventTitle" type="text" placeholder="event title">
                   </div>
               <div class="input-holder">
                 <i class="fa-regular fa-user"></i>
-                <input type="text" id="createventname" placeholder="Username">
+                <input type="text" id="eventDescription" placeholder="event description">
               </div>
               <div class="input-holder">
                 <i class="fa-solid fa-envelope"></i>
-              <input id="createeventemail" type="email" placeholder="Email" disabled>
+              <input id="eventDate" type="date" placeholder="event date">
               </div>
               <div class="input-holder">
                 <i class="fa-solid fa-key"></i>
-              <input id="createeventpassword" type="password" placeholder="Password" disabled>
+              <input id="eventLocation" type="text" placeholder="location">
               </div>
-              <button type="submit"><i class="fa-solid fa-check"></i>Save Changes</button>
-              </form> 
-              <button><i class="fa-solid fa-user-xmark"></i>Delete Account</button>
+              <div class="input-holder">
+                <i class="fa-solid fa-key"></i>
+              <input id="eventCategory" type="text" placeholder="category">
+              </div>
+              <div class="input-holder">
+                <i class="fa-solid fa-key"></i>
+              <input id="eventSubmittedBy" type="text" placeholder="name">
+              </div>
+              <button type="submit" id="submitEvent"><i class="fa-solid fa-check"></i>Submit</button>
+              </form>
+              <div class="confirm" id="confirmationContainer">
+                    <div class="container-holder">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
+                    </div>
+                    <div class="button-holder">
+                    <button>back</button>
+                    <button type="submit" id="confirmEvent"><i class="fa-solid fa-check"></i>Confirm</button>
+                  </div>
+              </div>   
           </div> 
     </div>
 </div>
@@ -125,8 +143,7 @@
       </div>
     </div>
     <div class="loader-holder" id="loader">
-        <h1>loading please wait
-        </h1>
+        <h1>Logging you in... Almost there!</h1>
         <div class="🤚">
             <div class="👉"></div>
             <div class="👉"></div>

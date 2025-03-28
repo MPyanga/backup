@@ -14,7 +14,7 @@
             const loginAccount = document.getElementById("loginAccount");
             const createAccountBtn = document.getElementById("Create");
             const closeeventmodal = document.getElementById("closeeventmodal");
-
+            const submitEvent = document.getElementById("submitEvent");
             // Navbar toggle
             hamburgerButton.addEventListener("click", () => {
                 navLinks.classList.toggle("show");
@@ -34,7 +34,7 @@
             
                 setTimeout(() => {
                     localStorage.setItem("isLoggedIn", "false");
-                    localStorage.removeItem("userId");
+                    localStorage.removeItem("userEmail");
                     window.location.href = document.getElementById("default").href;
                 }, 2000);
             
@@ -76,7 +76,7 @@
        
             // Handle link redirection
             // Function to handle the link click event
-function handleLinkClick(event) {
+    function handleLinkClick(event) {
     // Check if the user is logged in
     if (!localStorage.getItem("isLoggedIn") || localStorage.getItem("isLoggedIn") === "false") {
         // Prevent navigation
@@ -121,32 +121,34 @@ links.forEach(({ elementId }) => {
                 axios.get(API_URL)
                 .then(response => {
                     const users = response.data;
-                    const user = users.find(user => user.email === username && user.password === password );
+                    const user = users.find(user => user.email === username );
                     if (user ) {
                         Swal.fire({
                             title: "Login Successful!",
                             text: `Welcome, ${username.split("@")[0]}!`,
                             icon: "success",
-                            timer: 2000,
+                            timer: 1000,
                             showConfirmButton: false,
                         });
                         
                         modal.style.display = "none";
-                        loader.style.display ="flex";
                         localStorage.setItem("isLoggedIn", "true");
-                        localStorage.setItem("userId", user.id);
-            
+                        localStorage.setItem("userEmail", user.email);
+                        // loader.style.display ="flex";
+
             
                         setTimeout(() => {
-                            window.location.href = document.getElementById("admin").href;
-                        }, 2000);
+                            window.location.href = document.getElementById("default").href;
+                        }, 3000);
                 
                         return;
                     }
+                    
                     if(username == "admin" && password == '123'){
                         loader.style.display ="flex";
                         modal.style.display = "none";
                         localStorage.setItem("isLoggedIn", "true");
+                        
                         setTimeout(() => {
                             window.location.href = document.getElementById("admin").href;
                         }, 2000);
@@ -182,7 +184,13 @@ links.forEach(({ elementId }) => {
                         const users = response.data;
                         const user = users.find(user => user.email === email);
                         if (user) {
-                            alert("Account already exists!");
+                            Swal.fire({
+                                title: "Email Already Registered",
+                                text: "This email is already in use. Please use a different email or log in.",
+                                icon: "error",
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
                             return;
                         }
             
@@ -217,7 +225,7 @@ links.forEach(({ elementId }) => {
             
                                 // Store user ID in localStorage
                                 localStorage.setItem("isLoggedIn", "true");
-                                localStorage.setItem("userId", response.data.id); // Store the newly created user's ID
+                                localStorage.setItem("userEmail", response.data.email); // Store the newly created user's ID
             
                                 setTimeout(() => {
                                     window.location.href = document.getElementById("default").href;
@@ -236,11 +244,11 @@ links.forEach(({ elementId }) => {
             
 
             function checkAccountStatus() {
-                const loggedInUserId = localStorage.getItem("userId"); // Get current user ID
+                const loggedInUserEmail = localStorage.getItem("userEmail"); // Get current user ID
             
-                if (!loggedInUserId) return; // If not logged in, exit function
+                if (!loggedInUserEmail) return; // If not logged in, exit function
             
-                axios.get(`${API_URL}/${loggedInUserId}`)
+                axios.get(`${API_URL}/login/${loggedInUserEmail}`)
                     .then(response => {
                         console.log("User still exists:", response.data);
                     })
@@ -256,14 +264,14 @@ links.forEach(({ elementId }) => {
                         });
             
                         // Clear session data
-                        localStorage.removeItem("loggedInUserId");
+                        localStorage.removeItem("loggedInUserEmail");
                         sessionStorage.clear();
             
                         // Redirect to login page
                         setTimeout(() => {
                             window.location.href = document.getElementById("default").href; // Change this to your login page
                             localStorage.setItem("isLoggedIn", "false");
-                            localStorage.setItem("userId", "");
+                            localStorage.setItem("userEmail", "");
 
                         }, 3000);
                     });
@@ -281,3 +289,35 @@ links.forEach(({ elementId }) => {
                 document.getElementById("eventmodal").style.display = "flex";
             });
 
+
+            submitEvent.addEventListener("click", function () {
+               document.getElementById("createEventform").style.display = "none";
+               document.getElementById("confirmationContainer").style.display = "flex";
+
+                const eventTitle = document.getElementById("eventTitle").value;
+                const eventDescription = document.getElementById("eventDescription").value;
+                const eventDate = document.getElementById("eventDate").value;
+                const eventLocation = document.getElementById("eventLocation").value;
+                const eventCategory = document.getElementById("eventCategory").value;
+                const eventSubmittedBy = document.getElementById("eventSubmittedBy").value;
+        
+                confirmationContainer.innerHTML = `
+                    <h3>Confirm Event Details</h3>
+                    <p><strong>Title:</strong> ${eventTitle}</p>
+                    <p><strong>Description:</strong> ${eventDescription}</p>
+                    <p><strong>Date:</strong> ${eventDate}</p>
+                    <p><strong>Location:</strong> ${eventLocation}</p>
+                    <p><strong>Category:</strong> ${eventCategory}</p>
+                    <p><strong>Submitted By:</strong> ${eventSubmittedBy}</p>
+                `;
+            });
+
+            document.getElementById("confirmationContainer").addEventListener("submit", function (event) {
+                event.preventDefault();
+                    
+              
+            });
+            document.getElementById("page1").addEventListener("click", function () {
+                document.getElementById("createEventform").style.display = "flex";
+                document.getElementById("confirmationContainer").style.display = "none";
+             });

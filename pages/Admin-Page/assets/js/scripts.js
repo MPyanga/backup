@@ -1,6 +1,6 @@
 const usersContainer = document.getElementById("usercontainer");
 let usersData = []; // Store fetched users globally
-const API_URL = "https://demo-api-skills.vercel.app/api/EventOrganizer/users";
+const API_URL = "https://demo-api-skills.vercel.app/api/SocialButterfly/users";
 
 
 function displayUsers(users) {
@@ -18,7 +18,6 @@ function displayUsers(users) {
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Password</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,7 +35,6 @@ function displayUsers(users) {
                 <td>${user.id || "N/A"}</td>
                 <td>${user.name || "N/A"}</td>
                 <td>${user.email || "N/A"}</td>
-                <td>${user.password || "N/A"}</td>
             `;
             tbody.appendChild(row);
         });

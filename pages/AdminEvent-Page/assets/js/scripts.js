@@ -5,8 +5,9 @@ const createEventBtn = document.getElementById("create");
 const createmodal = document.getElementById("createmodal");
 const editmodal = document.getElementById("editmodal");
 const fetchBtn = document.getElementById("fetch");
+const signOutButton = document.getElementById("signout")
 
-const API_URL = "https://demo-api-skills.vercel.app/api/SocialButterfly/events/693dc21d-23d4-413f-ae07-257c53a35874";
+const API_URL = "https://demo-api-skills.vercel.app/api/SocialButterfly/events";
 
 let eventsData = [];
 
@@ -22,8 +23,6 @@ function fetchAllEvents() {
             Swal.fire({ title: "Error", text: "Failed to fetch events.", icon: "error" });
         });
 }
-
-
 
 // Display Events
 function displayEvents(events) {
@@ -62,7 +61,7 @@ document.getElementById("createform").addEventListener("submit", function (event
     const location = document.getElementById("eventLocation").value;
     const category = document.getElementById("eventCategory").value;
     const submittedBy = document.getElementById("eventSubmittedBy").value;
-    const newEvent = { title, description, date, location, category, submittedBy, validated: "true" };
+    const newEvent = { title, description, date, location, category, submittedBy };
 
     // const newEvent = { title, description, date, location, category, submittedBy };
 
@@ -182,3 +181,37 @@ fetchBtn.addEventListener("click", () => {
     // Ensure form uses `createUser` when submitting
 });
 
+
+signOutButton.addEventListener("click", function () {
+    Swal.fire({
+        title: "Logged Out!",
+        text: "You have successfully signed out.",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
+    });
+
+    setTimeout(() => {
+        localStorage.setItem("isLoggedIn", "false");
+        window.location.href = document.getElementById("default").href;
+    }, 2000);
+
+});
+// Fetch Users
+
+
+
+const categoryInput = document.getElementById("category");
+    const categorySelect = document.getElementById("eventCategorySelect");
+
+    categorySelect.addEventListener("change", function () {
+        if (this.value === "other") {
+            // Prompt user to enter custom category
+            categoryInput.style.display = "flex";
+            categorySelect.style.width = "7rem";
+
+        } else {
+            categoryInput.value = this.value;
+            // Set input value from selection
+        }
+    });
