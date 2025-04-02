@@ -292,7 +292,7 @@ header {
        
     }
 
-    & > .user-container{
+    & > .event-container{
         display: none;
         flex-direction: row;
         flex-wrap: wrap;
@@ -375,56 +375,56 @@ header {
         overflow: auto;
         background-color: rgb(0,0,0);
         background-color: rgba(0,0,0,0.4); /* Black with opacity */
-        padding-top: 10vh;
 
         & > .modal-content {
             display: flex;
             flex-direction: row;
             height: 75vh;
-            width: 50%;
+            width: 60%;
             justify-content: center;
             align-items: center;
             border: 4px solid black;
-            background-color: whitesmoke;
+            background-color:#B5E7A0;
 
-      & > .close {
-        color: black;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        position: absolute;
-        right: 0;
-        align-self:flex-start;
-        padding-right: 1rem;
-    
-        &:hover, &:focus {
-          color: blueviolet;
-          text-decoration: none;
-          cursor: pointer;
-        }
-      }   
-          & > .edit-modal {
-            display: flex;
-            flex-direction: column;
-            width: 70%;
-            height: 100%;
-            align-items: center;
-            justify-content: center;
+            & > .close {
+                color: black;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                position: absolute;
+                right: 0;
+                align-self:flex-start;
+                padding-right: 1rem;
+            
+                &:hover, &:focus {
+                color: blueviolet;
+                text-decoration: none;
+                cursor: pointer;
+                }
+            }
+
+            & > .edit-modal {
+                display: none;
+                flex-direction: column;
+                width: 70%;
+                height: 100%;
+                align-items: center;
+                justify-content: center;
 
             & > b{
-              font-family: "Bungee", sans-serif;
-              font-size: 20px;
-              color: rgb(23, 23, 21);
-              margin-bottom: 2rem;
+                font-family: "Bungee", sans-serif;
+                font-size: 20px;
+                color: rgb(23, 23, 21);
+                margin-bottom: 2rem;
             }
       
             & > form {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              width: 100%;
-              gap: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                gap: 1rem;
       
               & > .input-holder {
                 display: flex;
@@ -433,22 +433,11 @@ header {
                 position: relative;
                 width: 17rem;
                 height: 3rem;
-
-                & > i {
-                  position: absolute;
-                  left: 1rem;
-                  fill: none;
-                  width: 1rem;
-                  height: 1rem;
-                  color: rgb(65, 65, 65);
-                }
       
                 & > input {
                   width: 100%;
                   height: 50px;
                   line-height: 30px;
-                  padding: 0 1rem;
-                  padding-left: 3rem;
                   border: 2px solid transparent;
                   border-radius: 10px;
                   outline: none;
@@ -704,10 +693,7 @@ header {
                           }
                                      }
         }
-      
-    }
-                
-              & > button {
+                      & > button {
                 background-color: blueviolet;
                 border: none;
                 cursor: pointer; 
@@ -723,11 +709,15 @@ header {
                   color: black;
                 }
               }
+
+      
+    }
+                
             }          
         }
 }
 }
-}
+
 
 footer{
     display: flex;

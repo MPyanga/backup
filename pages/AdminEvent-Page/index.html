@@ -48,73 +48,96 @@
         </nav>
         <div class="initial-display" id="initial">
         </div>
-        <div id="eventsContainer" class="user-container">
+        <div id="eventsContainer" class="event-container">
         </div>
-        <div class="modal" id="modal">
-            <div class="modal-content">
-                <span class="close" id="closeModalBtn">&times;</span>
-                <div class="create-modal" id="createmodal">
-                  <form id="createform">
-                    <div class="input-holder">
-                        <label for="eventTitle">Event Title</label>
-                      <input id="eventTitle" type="text" placeholder="Enter an eye-catching event title..." required>
-                      </div>
+        <div class="eventmodal" id="eventmodal">
+          <div class="modal-content">
+              <span class="close" id="closeeventmodal">&times;</span>
+                <div class="createEvent-modal" id="createevent">
+                  <h1>Create Event</h1>
+                  <nav><button id="formBtn">Form</button><button id="confirmationBtn">Confirmation</button></nav>
+                  <div class="form-container" id="createEventform">
+                   <form>
                       <div class="input-holder">
-                        <label for="eventCategory">Event Category</label>
-                        <div class="category-holder">
-                            <input id="eventCategory" type="text" placeholder="category" name="category" required>
-                            <select id="categoryOption" required>
-                                <option value="" disabled selected>Select Category</option>
-                                <option value="Music">Music</option>
-                                <option value="Sports">Sports</option>
-                                <option value="Education">Education</option>
-                                <option value="Art">Art</option>     
-                                <option value="Gaming">Gaming</option>
-                                <option value="Wellness">Wellness</option>
-                                <option value="Outdoor & Travel">Outdoor & Travel</option>
-                                <option value="Community & Charity">Community & Charity</option>
-                                <option value="Business & Networking">Business & Networking</option>
-                                <option value="other">Other</option>
-                            </select>
+                          <label for="eventTitle">Event Title</label>
+                        <input id="eventTitle" type="text" placeholder="Enter an eye-catching event title..." required>
                         </div>
-                      </div>
+                        <div class="input-holder">
+                          <label for="eventCategory">Event Category</label>
+                          <div class="category-holder">
+                              <input id="eventCategory" type="text" placeholder="category" name="category" required>
+                              <select id="categoryOption" required>
+                                  <option value="" disabled selected>Select Category</option>
+                                  <option value="Music">Music</option>
+                                  <option value="Sports">Sports</option>
+                                  <option value="Education">Education</option>
+                                  <option value="Art">Art</option>     
+                                  <option value="Gaming">Gaming</option>
+                                  <option value="Wellness">Wellness</option>
+                                  <option value="Outdoor & Travel">Outdoor & Travel</option>
+                                  <option value="Community & Charity">Community & Charity</option>
+                                  <option value="Business & Networking">Business & Networking</option>
+                                  <option value="other">Other</option>
+                              </select>
+                          </div>
+                        </div>
+                      <div class="input-holder">
+                          <label for="eventDate">Event Date</label>
+                        <input id="eventDate" type="date" placeholder="event date" name="date" required>
+                        </div>
+                      <div class="input-holder">
+                      <label for="eventLocation">Event Location</label> 
+                   <input id="eventLocation" type="text" placeholder="location" required>
+                    </div>
                     <div class="input-holder">
-                        <label for="eventDate">Event Date</label>
-                      <input id="eventDate" type="date" placeholder="event date" name="date" required>
-                      </div>
-                    <div class="input-holder">
-                    <label for="eventLocation">Event Location</label> 
-                 <input id="eventLocation" type="text" placeholder="location" required>
+                      <label for="eventDescription">Event Description</label>
+                          <textarea type="text" id="eventDescription" placeholder="Give a sneak peek of your amazing event..." name="description" required></textarea>  
+                    </div>             
+                    </form>
                   </div>
-                  <div class="input-holder">
-                    <label for="eventDescription">Event Description</label>
-                        <textarea type="text" id="eventDescription" placeholder="Give a sneak peek of your amazing event..." name="description" required></textarea>  
-                  </div>             
-                  </form> 
-                  </div>
-                   <div class="edit-modal" id="editmodal">
-                    <form id="editform">
-                      <div class="input-holder">
-                        <i class="fa-regular fa-user"></i>
-                        <input type="text" id="createname" placeholder="Full name">
-                      </div>
-                      <div class="input-holder">
-                        <i class="fa-solid fa-envelope"></i>
-                      <input id="createemail" type="email" placeholder="Email">
-                      </div>
-                      <div class="input-holder">
-                        <i class="fa-solid fa-lock"></i>
-                      <input id="createpassword" type="createpassword" placeholder="Password">
-                      </div>
-                      <div class="input-holder">
-                        <i class="fa-solid fa-lock"></i>
-                      <input id="confirmpassword" type="password" placeholder="Confirm password">
-                      </div>
-                      <button type="submit">Create user</button>
-                      </form>                
-                  </div> 
-            </div>
-        </div>
+                  <button type="submit" id="submitEvent"></i>Next <i class="fa-solid fa-arrow-right"></i></button>
+                    <div class="confirm" id="confirmationContainer">
+                          <div class="container-holder" id="confirmationContent">
+                              <!-- <div class="left">
+                                  <i class="fa-solid fa-music"></i>
+                              </div>
+                              <div class="right">
+                                  <div class="content">
+                                      <div class="title">
+                                          <b>TITLE</b>
+                                          <h1>Concert 2024</h1>
+                                      </div>
+                                      <div class="description">
+                                          <b>DESCRIPTION</b>
+                                          <p>Get ready for an electrifying night of live music, unforgettable performances, and an atmosphere like no other! Join us for [Concert Name], featuring [Artist/Band Name], as they take the stage to deliver an incredible show filled with chart-topping hits and breathtaking visuals.
+                                          </p>
+                                       </div>
+                                      <div class="date">
+                                          <b>DATE</b>
+                                          <p><i class="fa-solid fa-calendar"></i>02/19/03</p>
+                                      </div>
+                                      <div class="location">
+                                          <b>LOCATION</b>
+                                          <p><i class="fa-solid fa-location-dot"></i>Cubao expo, Quezon City</p>
+                                      </div>
+                                      <div class="category">
+                                          <b>CATEGORY</b>
+                                          <p>MUSIC</p>
+                                      </div>
+                                  </div>
+                                  <div class="host">
+                                      <p><i class = "fa-solid fa-user"></i>Hosted By: matthewyanga00@gmail.com</p>
+                                  </div>
+                              </div> -->
+                          </div>
+                    </div>   
+                    <div class="button-holder" id="btnHolder">
+                      <button id="backConfirmation"><i class="fa-solid fa-arrow-left"></i>Back</button>
+                      <button type="submit" id="confirmEvent"><i class="fa-solid fa-check"></i>Submit</button>
+                    </div>
+                </div> 
+          </div>
+      </div>      
     </section>
     <a href="../../index.html" id="default"></a>
 <script src="./assets/js/scripts.js"></script>
