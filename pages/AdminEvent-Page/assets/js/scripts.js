@@ -59,7 +59,7 @@ document.getElementById("createform").addEventListener("submit", function (event
     const description = document.getElementById("eventDescription").value;
     const date = document.getElementById("eventDate").value;
     const location = document.getElementById("eventLocation").value;
-    const category = document.getElementById("eventCategory").value;
+    const category = document.getElementById("eventCategorySelect").value;
     const submittedBy = document.getElementById("eventSubmittedBy").value;
     const newEvent = { title, description, date, location, category, submittedBy };
 
