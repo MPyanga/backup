@@ -54,41 +54,43 @@
             <div class="modal-content">
                 <span class="close" id="closeModalBtn">&times;</span>
                 <div class="create-modal" id="createmodal">
-                     <form id="createform">
-                        <div class="input-holder">
-                            <i class="fa-solid fa-id-card"></i>
-                          <input id="eventTitle" type="text" placeholder="event title">
-                          </div>
-                      <div class="input-holder">
-                        <i class="fa-regular fa-user"></i>
-                        <input type="text" id="eventDescription" placeholder="event description">
+                  <form id="createform">
+                    <div class="input-holder">
+                        <label for="eventTitle">Event Title</label>
+                      <input id="eventTitle" type="text" placeholder="Enter an eye-catching event title..." required>
                       </div>
                       <div class="input-holder">
-                        <i class="fa-solid fa-envelope"></i>
-                      <input id="eventDate" type="date" placeholder="event date">
+                        <label for="eventCategory">Event Category</label>
+                        <div class="category-holder">
+                            <input id="eventCategory" type="text" placeholder="category" name="category" required>
+                            <select id="categoryOption" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="Music">Music</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Education">Education</option>
+                                <option value="Art">Art</option>     
+                                <option value="Gaming">Gaming</option>
+                                <option value="Wellness">Wellness</option>
+                                <option value="Outdoor & Travel">Outdoor & Travel</option>
+                                <option value="Community & Charity">Community & Charity</option>
+                                <option value="Business & Networking">Business & Networking</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
                       </div>
-                      <div class="input-holder">
-                        <i class="fa-solid fa-key"></i>
-                      <input id="eventLocation" type="text" placeholder="location">
+                    <div class="input-holder">
+                        <label for="eventDate">Event Date</label>
+                      <input id="eventDate" type="date" placeholder="event date" name="date" required>
                       </div>
-                      <div class="input-holder">
-                        <i class="fa-solid fa-key"></i>
-                        <input type="text" id="category">
-                      <select id="eventCategorySelect" class="select">
-                        <option value="" disabled selected>Select a category</option>
-                        <option value="Volvo">Volvo</option>
-                        <option value="Saab">Saab</option>
-                        <option value="Fiat">Fiat</option>
-                        <option value="Audi">Audi</option>
-                        <option value="other">other</option>
-                    </select>
-                      </div>
-                      <div class="input-holder">
-                        <i class="fa-solid fa-key"></i>
-                      <input id="eventSubmittedBy" type="text" placeholder="name">
-                      </div>
-                      <button type="submit">create</button>
-                      </form> 
+                    <div class="input-holder">
+                    <label for="eventLocation">Event Location</label> 
+                 <input id="eventLocation" type="text" placeholder="location" required>
+                  </div>
+                  <div class="input-holder">
+                    <label for="eventDescription">Event Description</label>
+                        <textarea type="text" id="eventDescription" placeholder="Give a sneak peek of your amazing event..." name="description" required></textarea>  
+                  </div>             
+                  </form> 
                   </div>
                    <div class="edit-modal" id="editmodal">
                     <form id="editform">

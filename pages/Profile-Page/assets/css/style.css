@@ -1,8 +1,27 @@
 body{
     margin: 0;
-background-color: rgb(252, 252, 205) !important;
+    background-color: rgb(252, 252, 205) !important;
 
+    &::-webkit-scrollbar {
+        width: 1.1rem; /* Width of the scrollbar */
+        scroll-behavior: smooth;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: rgb(251, 149, 165);
+        outline: 3px solid black;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: lightblue;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: violet;
+        outline: 3px solid black;
+    }
 }
+
 header {
     display:flex;
     width: 100%;
@@ -156,70 +175,6 @@ header {
     }
 }
 
-::-webkit-scrollbar {
-    width: 1.1rem; /* Width of the scrollbar */
-    scroll-behavior: smooth;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgb(251, 149, 165);
-    outline: 3px solid black;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: lightblue;
-}
-
-::-webkit-scrollbar-track {
-    background: violet;
-    outline: 3px solid black;
-}
-/* .section1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: lightcoral;
-    color: white;
-    flex-direction: column;
-    width: 100%;
-    gap: 2rem;
-
-    & > h1{
-        font-size: 50px;
-        font-family: "Bungee", sans-serif;
-        font-weight: 900;
-    }
-    
-    & > .about-us{
-        display: flex;
-        height: 50vh;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-
-        & > .container-left{
-            display: flex;
-            width: 50%;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        & > .container-right{
-            display: flex;
-            width: 30%;
-            justify-content: center;
-            align-items: center;
-
-            & > img{
-                display: flex;
-                height: 60vh;
-            }
-        }
-    }
-} */
 .section1{
     display: flex;
     height: 100vh;
@@ -232,9 +187,6 @@ header {
     background-size: cover;
     padding-top: 3rem;
 
-   
-
-  
     & > .editHolder{
         height: 80vh;
         width: 30rem;

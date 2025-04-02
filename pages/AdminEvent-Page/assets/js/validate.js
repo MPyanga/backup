@@ -5,28 +5,29 @@ document.getElementById("validate").addEventListener("click", () => {
 document.getElementById("validateform").addEventListener("submit", async (event) => {
     event.preventDefault();
     const eventId = document.getElementById("validateinput").value;
-    const adminId = "your-admin-uuid"; // Replace with the actual admin UUID
+    const adminId = "620b24d1-db42-4347-aaa3-029fbc69a5c6"; // Replace with the actual admin UUID
 
     if (!eventId) {
         alert("Please enter an event ID.");
         return;
     }
-
+  
     try {
-        const response = await fetch(`https://demo-api-skills.vercel.app/api/SocialButterfly/admin/events/${eventId}/validate/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "adminId": adminId
+        const req = new Request(
+            `http://localhost:5500/api/SocialButterfly/admin/events/${eventId}/validate`,
+            {
+                method: "POST",
+                headers: new Headers({ adminId: "adminId" })
             }
-        });
+        );
 
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
+        const res = await fetch(req);
+        if (res.status !== 200) {
+            throw new Error(`Error: ${res.status}`);
         }
 
-        const data = await response.json();
-        alert(`Event ID ${data.event.id} validated successfully!`);
+        const result = await res.json();
+        alert(`Event ID ${result.event.id} validated successfully!`);
     } catch (error) {
         console.error("Validation failed:", error);
         alert("Failed to validate event. Check console for details.");

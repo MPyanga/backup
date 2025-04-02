@@ -381,10 +381,9 @@ header {
             display: flex;
             flex-direction: row;
             height: 75vh;
-            width: 30%;
+            width: 50%;
             justify-content: center;
             align-items: center;
-            margin-bottom: 1rem;
             border: 4px solid black;
             background-color: whitesmoke;
 
@@ -534,71 +533,180 @@ header {
       
             & > form {
               display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
+              flex-direction: row;
               width: 100%;
-              gap: 1rem;
-      
-              & > .input-holder {
-                display: flex;
-                line-height: 30px;
-                align-items: center;
-                position: relative;
-                width: 17rem;
-                height: 3rem;
+              height: 100%;
+              flex-wrap: wrap;
+              row-gap: 20px;
+              column-gap: 40px;
+              
+              & > .input-holder  {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 6px;
 
-                &:nth-child(5){
-                  justify-content: center;
-                  align-content: center;
+                  & > label{
+                      font-weight: 600;
+                      font-size: 14px;
+                      color: white;
+                  }
                   
-                  & > input{
-                    display: none;
+                  & > textarea {
+                      padding-left: 1rem;
+                      padding-top: 10px;
+                      width: 25rem;
+                      height: 17vh;
+                      font-size: 14px;
+                      resize: none;  
+                      word-wrap: break-word;
+                      overflow-wrap: break-word;
+                      white-space: pre-wrap;
+                      background-color: transparent;
+                      line-height: 20px;
+                      border: 2px solid transparent;
+                      border-radius: 10px;
+                      outline: none;
+                      background-color: #5454548d;
+                      color: whitesmoke;
+                      transition: .5s ease;
+
+                      &::placeholder{
+                          font-size: 1rem;
+                          color: rgb(163, 163, 163);
+                      }
+                      &:focus, &:hover {
+                          outline: none;
+                          border-color: whitesmoke;
+                          background-color: rgba(113, 3, 73, 0.491);
+                          box-shadow: 0 0 0 5px rgba(245, 245, 245, 0.273);
+                          color: whitesmoke;
+                          transition: .1s;
+
+                          &::placeholder{
+                              color: whitesmoke;
+                          }
+                      }
+                      &::-webkit-scrollbar{
+                          display: none;
+                      }
+                  }
+
+                  &:nth-child(1){
+                      width: 100%;
+                      & > input{
+                          width: 22rem;
+                      }
+                  }
+                  &:nth-child(3){
+                      & > input{
+                          padding-right: 10px;
+                      }
+                  }
+                  & > input {
                     width: 10rem;
-                  }
-                }
-                & > i {
-                  position: absolute;
-                  left: 1rem;
-                  fill: none;
-                  width: 1rem;
-                  height: 1rem;
-                  color: rgb(65, 65, 65);
-                }
-      
-                & > input, select {
-                  width: 100%;
-                  height: 50px;
-                  line-height: 30px;
-                  padding: 0 1rem;
-                  padding-left: 3rem;
-                  border: 2px solid transparent;
-                  border-radius: 10px;
-                  outline: none;
-                  background-color: #5454548d;
-                  color: black;
-                  transition: .5s ease;
-      
-                  
-                  &::placeholder{
-                      color: #ffffff;
-                      font-size: 15px;
-                    }
-                  
-                  &:focus, &:hover {
+                    height: 50px;
+                    line-height: 30px;
+                    padding-left: 1rem;
+                    border: 2px solid transparent;
+                    border-radius: 10px;
                     outline: none;
-                    border-color: blueviolet;
-                    background-color: rgb(252, 252, 205);
-                    box-shadow: 0 0 0 5px rgb(129 140 248 / 30%);
-      
+                    background-color: #5454548d;
+                    color: white;
+                    transition: .5s ease;
+                      
                     &::placeholder{
-                      color: black;
-      
-                    }
+                      font-size: 1rem;
+                      color: rgb(163, 163, 163);
                   }
-                }
+                  &:focus, &:hover {
+                      outline: none;
+                      border-color: whitesmoke;
+                      background-color: rgba(113, 3, 73, 0.491);
+                      box-shadow: 0 0 0 5px rgba(245, 245, 245, 0.273);
+                      color: whitesmoke;
+                      transition: .1s;
+                      
+                      &::placeholder{
+                          color: whitesmoke;
+                      }
+                  }
+                  }
+
+                  & > .category-holder{
+                      display: flex;
+                      flex-direction: row;
+
+                      & > select{
+                          width: 11rem;
+                          height: 50px;
+                          padding-left: 10px;
+                          border: 2px solid transparent;
+                          border-radius: 10px;
+                          outline: none;
+                          background-color: #5454548d;
+                          color: whitesmoke;
+                          font-size: 14px;
+
+                          &::placeholder{
+                              font-size: 1rem;
+                              color: whitesmoke;
+                          }
+                          &:focus, &:hover {
+                              outline: none;
+                              border-color: whitesmoke;
+                              background-color: rgba(113, 3, 73, 0.491);
+                              box-shadow: 0 0 0 5px rgba(245, 245, 245, 0.273);
+                              color: whitesmoke;
+                              transition: .1s;
+                              
+                              & > option{
+                                  background-color: rgb(160, 2, 102);
+
+                                   &:nth-child(1){
+                                      color: rgb(163, 163, 163);
+
+                                   }
+                              }
+                              &::placeholder{
+                                  color: whitesmoke;
+                              }
+                          }
+                      }
+                      & > input {
+                          display: none;
+                          width: 10rem;
+                          height: 50px;
+                          line-height: 30px;
+                          padding-left: 1rem;
+                          border: 2px solid transparent;
+                          border-radius: 10px;
+                          outline: none;
+                          background-color: #5454548d;
+                          color: white;
+                          transition: .5s ease;
+
+                          &::placeholder{
+                              font-size: 1rem;
+                              color: rgb(163, 163, 163);
+                          }
+                          &:focus, &:hover {
+                              outline: none;
+                              border-color: whitesmoke;
+                              background-color: rgba(113, 3, 73, 0.491);
+                              box-shadow: 0 0 0 5px rgba(245, 245, 245, 0.273);
+                              color: whitesmoke;
+                              transition: .1s;
+      
+                              &::placeholder{
+                                  color: whitesmoke;
+                              }
+                          }
+                          }
+                                     }
+        }
+      
+    }
                 
-              }
               & > button {
                 background-color: blueviolet;
                 border: none;
