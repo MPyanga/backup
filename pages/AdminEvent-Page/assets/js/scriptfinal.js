@@ -1,24 +1,43 @@
+const hamburgerButton = document.getElementById("hamburger_icon");
+const navLinks = document.getElementById("navlinks");
+const icon = hamburgerButton.querySelector("i"); // Use optional chaining to prevent errors
+const signOutButton = document.getElementById("signout");
+const loginButton = document.getElementById("loginbutton");//check
+const createModal = document.getElementById("createModal");
+const loginAccount = document.getElementById("loginAccount");
+const errorMessage = document.getElementById("errorMessage");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const modal = document.getElementById("loginModal");
+const createAccountBtn = document.getElementById("Create");
 const confirmationContainer = document.getElementById("confirmationContainer");
 const btnHolder = document.getElementById("btnHolder");
 const formBtn = document.getElementById("formBtn");
 const confirmationBtn =  document.getElementById("confirmationBtn");
 const form = document.getElementById("createEventform");
 const confirmationContent = document.getElementById("confirmationContent");
+const dropdown = document.getElementById("dropdown");
+const closeeventmodal = document.getElementById("closeeventmodal");
+const submitEvent = document.getElementById("submitEvent");
 
-    document.getElementById("createEvent").addEventListener("click", () => {
-        document.getElementById("eventmodal").style.display = "flex";
-        createEventform.style.display = "flex";
-        submitEvent.style.display = "flex";
-        form.style.display = "flex";
-        confirmationContainer.style.display = "none";
-        btnHolder.style.display = "none";
-        formBtn.style.backgroundColor= "rgb(205, 0, 130)";
-        formBtn.style.color= "whitesmoke";
-        formBtn.style.height= "2.3rem";
-        confirmationBtn.style.backgroundColor= "whitesmoke";
-        confirmationBtn.style.color= "rgb(205, 0, 130)";
-        confirmationBtn.style.height= "1.7rem";
-    });
+document.getElementById("createEventBtn").addEventListener("click", () => {
+    if (!localStorage.getItem("isLoggedIn") || localStorage.getItem("isLoggedIn") === "false") {
+        modal.style.display = "flex"; // Show login modal instead
+        return; // Stop execution
+    }
+    
+    document.getElementById("eventmodal").style.display = "flex";
+    createEventform.style.display = "flex";
+    submitEvent.style.display = "flex";
+    form.style.display = "flex";
+    confirmationContainer.style.display = "none";
+    btnHolder.style.display = "none";
+    formBtn.style.backgroundColor= "rgb(205, 0, 130)";
+    formBtn.style.color= "whitesmoke";
+    formBtn.style.height= "2.3rem";
+    confirmationBtn.style.backgroundColor= "whitesmoke";
+    confirmationBtn.style.color= "rgb(205, 0, 130)";
+    confirmationBtn.style.height= "1.7rem";
+});
 
 
 submitEvent.addEventListener("click", function () {
@@ -29,14 +48,29 @@ submitEvent.addEventListener("click", function () {
     let eventCategory = document.getElementById("eventCategory").value;
     const categoryOption = document.getElementById("categoryOption").value;
     const eventSubmittedBy = localStorage.getItem("userId");
+    
+    function validateForm() {
+        if (!eventCategory) {
+            eventCategory = categoryOption;
+            }
+    
+        if (!eventTitle || !eventDescription || !eventDate || !eventLocation || !eventCategory) {
+            Swal.fire({ title: "Error", text: "Please fill out all the fields before submitting.", icon: "error" });
+            return false;
+        }
+        return true;
+    }
+    
     if (!validateForm()) {
         return; // Exit if validation fails
     }
+
     // If eventCategory is empty, use eventOption
     if (!eventCategory) {
     eventCategory = categoryOption;
     }
-// Mapping categories to Font Awesome icons
+
+    // Mapping categories to Font Awesome icons
     const categoryIcons = {
         "Music": "fa-music",
         "Sports": "fa-football-ball",
@@ -52,7 +86,6 @@ submitEvent.addEventListener("click", function () {
     // Get the corresponding icon class
     let categoryIcon = categoryIcons[eventCategory] || "fa-solid"; // Default icon if category isn't listed
 
-    // Display event details dynamically
 
     confirmationContent.innerHTML = `
     <div class="left">
@@ -86,6 +119,7 @@ submitEvent.addEventListener("click", function () {
         </div>
     </div>
     `;
+
     form.style.display = "none";
     confirmationContainer.style.display = "flex";
     submitEvent.style.display = "none";
@@ -96,18 +130,6 @@ submitEvent.addEventListener("click", function () {
     confirmationBtn.style.backgroundColor= "rgb(205, 0, 130)";
     confirmationBtn.style.height= "2.3rem";
     confirmationBtn.style.color= "whitesmoke";
-
-    function validateForm() {
-        if (!eventCategory) {
-            eventCategory = categoryOption;
-            }
-
-        if (!eventTitle || !eventDescription || !eventDate || !eventLocation || !eventCategory) {
-            Swal.fire({ title: "Error", text: "Please fill out all the fields before submitting.", icon: "error" });
-            return false;
-        }
-        return true;
-    }
 
     const newEvent = { title: eventTitle, description: eventDescription, date: eventDate, location: eventLocation, category: eventCategory, submittedBy: eventSubmittedBy };
 
@@ -131,7 +153,6 @@ submitEvent.addEventListener("click", function () {
     });
 });
 
-
 document.getElementById("backConfirmation").addEventListener("click", function () {
     document.getElementById("createEventform").style.display = "flex";
     document.getElementById("confirmationContainer").style.display = "none";
@@ -143,8 +164,7 @@ document.getElementById("backConfirmation").addEventListener("click", function (
     confirmationBtn.style.backgroundColor= "whitesmoke";
     confirmationBtn.style.color = "rgb(205, 0, 130)";
     confirmationBtn.style.height= "1.7rem";
-
-    });
+});
 
     document.getElementById("categoryOption").addEventListener("change", function() {
     var inputField = document.getElementById("eventCategory");
@@ -159,5 +179,18 @@ document.getElementById("backConfirmation").addEventListener("click", function (
         categoryOption.style.width = "11rem";
     }
 });
-const closeeventmodal = document.getElementById("closeeventmodal"); ///check
-const submitEvent = document.getElementById("submitEvent"); //check
+
+function clearEventForm() {
+    document.getElementById("eventTitle").value = "";
+    document.getElementById("eventDescription").value = "";
+    document.getElementById("eventDate").value = "";
+    document.getElementById("eventLocation").value = "";
+    document.getElementById("eventCategory").value = "";
+    document.getElementById("categoryOption").value = "";
+}
+
+function eventcloseModal() {
+    eventmodal.style.display = "none";
+    clearEventForm();
+}
+if (closeeventmodal) closeeventmodal.addEventListener("click", eventcloseModal);
